@@ -1,2 +1,2 @@
-# IOT_project
-IOT_project for Nexus 2024
+# IOT project
+IOT project for Nexus 2024
