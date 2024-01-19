@@ -17,7 +17,7 @@ def speak(audio):
 
 fs = 22050
 seconds = 2
-model = load_model("D:\--PROJECTS2024--\LumosAI_\hotword\saved_model\WWD2.h5")
+model = load_model("D:\--PROJECTS2024--\LumosAI_\hotword\saved_model\WWD.h5")
 
 def listener():
     while True:
@@ -32,6 +32,7 @@ def listener():
 def voice_thread():
     listen_thread = threading.Thread(target=listener, name="ListeningFunction")
     listen_thread.start()
+    listen_thread.join()
 
 def prediction(y):
     prediction = model.predict(np.expand_dims(y, axis=0))
