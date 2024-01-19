@@ -17,7 +17,7 @@ def speak(audio):
 
 fs = 22050
 seconds = 2
-model = load_model("D:\pritish\ChatBot\WakeWordDetection\saved_model\WWD2.h5")
+model = load_model("D:\--PROJECTS2024--\LumosAI_\hotword\saved_model\WWD2.h5")
 
 def listener():
     while True:
