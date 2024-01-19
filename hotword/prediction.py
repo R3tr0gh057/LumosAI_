@@ -11,7 +11,7 @@ seconds = 2
 filename = "prediction.wav"
 class_names = ["Wake Word NOT Detected", "Wake Word Detected"]
 
-##### LOADING OUR SAVED MODEL and PREDICTING ###
+##### LOADING THE SAVED MODEL and PREDICTING ###
 model = load_model("saved_model/WWD.h5")
 
 print("Prediction Started: ")
