@@ -27,7 +27,7 @@ def record_background_sound(save_path, n_times=50):
         print(f"Currently on {i+1}/{n_times}")
 
 print("Recording the Wake Word:\n")
-record_audio_and_save("audio_data/", n_times=100) 
+record_audio_and_save("audio_data/", n_times=100)
 
 print("Recording the Background sounds:\n")
 record_background_sound("background_sound/", n_times=100)
