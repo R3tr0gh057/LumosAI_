@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const Gpio = require('pigpio-mock').Gpio;
 
 const app = express();
-const ledPin = 2; // Replace '2' with the GPIO pin connected to the LED
+const ledPin = 'D2'; // Replace '2' with the GPIO pin connected to the LED
 
 app.use(bodyParser.json());
 
@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 app.post('/toggle-led', (req, res) => {
   try {
-    const led = new Gpio(ledPin, { mode: Gpio.OUTPUT });
+    const led = new Gpio(ledPin, { mode: Gpio.OUTPUT }); 
     const currentValue = led.digitalRead();
     const newValue = currentValue === 0 ? 1 : 0;
     led.digitalWrite(newValue);

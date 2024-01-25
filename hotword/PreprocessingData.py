@@ -1,25 +1,9 @@
-###### IMPORTS ################
 import os
 import librosa
 import librosa.display
 #import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
-#testing a sample for waveform and mfcc
-"""walley_sample = "background_sound/99.wav"
-data, sample_rate = librosa.load(walley_sample)
-
-plt.title("Wave Form")
-librosa.display.waveshow(data, sr=sample_rate)
-plt.show()
-
-mfccs = librosa.feature.mfcc(y=data, sr=sample_rate, n_mfcc=40)
-print("Shape of mfcc:", mfccs.shape)
-
-plt.title("MFCC")
-librosa.display.specshow(mfccs, sr=sample_rate, x_axis='time')
-plt.show()"""
 
 all_data = []
 data_path_dict = {
