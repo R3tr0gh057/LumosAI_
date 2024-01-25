@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NodeMCU Control</title>
+</head>
+<body>
+  <h1>NodeMCU Control</h1>
+  <button onclick="sendCommand('/on')">Turn On</button>
+  <button onclick="sendCommand('/off')">Turn Off</button>
+
+  <script>
+    function sendCommand(endpoint) {
+      fetch(endpoint)
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    }
+  </script>
+</body>
+</html>
