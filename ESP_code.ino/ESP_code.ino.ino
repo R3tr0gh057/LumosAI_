@@ -42,17 +42,17 @@ void loop(){
   WiFiClient client = server.available();  
 
   if (client) {                             
-    Serial.println("New Client.");          
-    String currentLine = "";                
+    Serial.println("New Client.");
+    String currentLine = "";
     currentTime = millis();
     previousTime = currentTime;
-    while (client.connected() && currentTime - previousTime <= timeoutTime) { 
-      currentTime = millis();         
-      if (client.available()) {             
-        char c = client.read();             
-        Serial.write(c);                   
+    while (client.connected() && currentTime - previousTime <= timeoutTime) {
+      currentTime = millis();
+      if (client.available()) {
+        char c = client.read();
+        Serial.write(c);
         header += c;
-        if (c == '\n') {                   
+        if (c == '\n') {
           if (currentLine.length() == 0) {
             client.println("HTTP/1.1 200 OK");
             client.println("Content-type:text/html");

@@ -2,6 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Gpio = require('pigpio-mock').Gpio;
+  
+document.getElementById("button").outerText
 
 const app = express();
 const ledPin = 'D2'; // Replace '2' with the GPIO pin connected to the LED

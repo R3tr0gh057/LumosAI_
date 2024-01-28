@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "LumosAI",
+			"path": "Test/LumosAI"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "LumosAI_"
+	}
+}
