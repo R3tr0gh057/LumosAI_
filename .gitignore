@@ -1,1 +1,3 @@
-Test/server/node_modules
+Test/node_modules
+Test/package-lock.json
+Test/package.json
