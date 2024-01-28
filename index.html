@@ -19,16 +19,42 @@
 	    cursor: pointer;
 	}
     </style>
-    <button id="ledButton">Toggle LED</button>
+    <button id="ledButton1">Toggle LED</button>
+    <button id="ledButton2">Toggle LED</button>
     <script>
     
 	document.addEventListener('DOMContentLoaded', function () {
-	    const ledButton = document.getElementById('ledButton');
+	    const ledButton1 = document.getElementById('ledButton1');
+	    const ledButton2 = document.getElementById('ledButton2');
 
-	    ledButton.addEventListener('click', function () {
+	    ledButton1.addEventListener('click', function () {
 	        
     		// Send a request to the ESP8266 when the button is clicked
-        	fetch('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led', {
+        	fetch('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1', {
+              method: "get",
+              headers: new Headers({
+                'Access-Control-Allow-Origin' : '*',
+                'ngrok-skip-browser-warning': '69420',
+              }),
+            })
+		    .then(response => {
+		        if (!response.ok) {
+		            throw new Error('HTTP error! Status: ${response.status}');
+		        }
+		        return response.text();
+		    })
+		    .then(data => {
+		        console.log(data); // Log the response from the ESP8266
+		    })
+		    .catch(error => {
+		        console.error('Error:', error);
+		    });
+	    });
+	    
+	    ledButton2.addEventListener('click', function () {
+	        
+    		// Send a request to the ESP8266 when the button is clicked
+        	fetch('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led2', {
               method: "get",
               headers: new Headers({
                 'Access-Control-Allow-Origin' : '*',
