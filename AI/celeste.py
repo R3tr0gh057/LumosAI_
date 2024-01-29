@@ -51,10 +51,10 @@ def main():
             query = takeCommand().lower()
 
             if 'turn on the lights' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1')
                 speak(op.text)
             elif 'turn off the lights' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1')
                 speak(op.text)
             else:
                 speak('Could you say that again please?')
