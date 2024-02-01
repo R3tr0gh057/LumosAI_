@@ -2,6 +2,7 @@ import pyttsx3
 import speech_recognition as sr
 import requests
 import datetime
+import time
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -56,6 +57,13 @@ def main():
             elif 'turn off the lights' in query:
                 op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1')
                 speak(op.text)
+            elif 'drop the scroll' in query:
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/unlock')
+                time.sleep(10)
+                speak("The event has started")
+            elif 'initial position' in query:
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/lock')
+                speak("Initial position restored")
             else:
                 speak('Could you say that again please?')
                 main()

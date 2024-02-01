@@ -72,6 +72,8 @@
 	document.addEventListener('DOMContentLoaded', function () {
 	    const ledButton1 = document.getElementById('ledButton1');
 	    const ledButton2 = document.getElementById('ledButton2');
+		const lock = document.getElementById('Lock');
+		const unlock = document.getElementById('Unlock');
 
 	    ledButton1.addEventListener('click', function () {
 			
@@ -122,7 +124,7 @@
 	    });
 
 		//js for servo control unlock
-		ledButton2.addEventListener('click', function () {
+		unlock.addEventListener('click', function () {
 			
 			// Send a request to the ESP8266 when the button is clicked
 			fetch('https://bulldog-promoted-accurately.ngrok-free.app/unlock', {
@@ -147,7 +149,7 @@
 		});
 
 		//js for servo control lock
-		ledButton2.addEventListener('click', function () {
+		lock.addEventListener('click', function () {
 			
 			// Send a request to the ESP8266 when the button is clicked
 			fetch('https://bulldog-promoted-accurately.ngrok-free.app/lock', {
