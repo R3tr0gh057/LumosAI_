@@ -37,9 +37,7 @@ async function init() {
         for (let i = 0; i < classLabels.length; i++) {
             const classPrediction = classLabels[i] + ': ' + result.scores[i].toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
-            if(result.scores[2].toFixed(2)>0.90){
-                toggleRED();
-            }
+            console.log(result.scores[2]);
         }
     }, {
         includeSpectrogram: true,
