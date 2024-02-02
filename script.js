@@ -19,36 +19,6 @@ async function createModel() {
     return recognizer;
 }
 
-/*async function init() {
-    if (!AI.classList.contains('active')) {
-        if (recognizer) {
-            recognizer.stopListening(); // Stop listening if recognizer is already initialized
-        }
-        return;
-    }
-
-    const classLabels = recognizer.wordLabels(); // get class labels
-    const labelContainer = document.getElementById('label-container');
-    for (let i = 0; i < classLabels.length; i++) {
-        labelContainer.appendChild(document.createElement('div'));
-    }
-
-    recognizer.listen(result => {
-        const scores = result.scores;
-        for (let i = 0; i < classLabels.length; i++) {
-            const classPrediction = classLabels[i] + ': ' + result.scores[i].toFixed(2);
-            labelContainer.childNodes[i].innerHTML = classPrediction;
-            console.log(scores);
-        }
-    }, {
-        includeSpectrogram: true,
-        probabilityThreshold: 0.90,
-        invokeCallbackOnNoiseAndUnknown: true,
-        overlapFactor: 0.50
-    });
-}
-*/
-
 async function init() {
     if (!AI.classList.contains('active')) {
         if (recognizer) {
