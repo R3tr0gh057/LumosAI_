@@ -1,13 +1,13 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-const char *ssid = "Hello";
-const char *password = "joshua 11";
+const char *ssid = "GNXS-2.4G-BDC980";
+const char *password = "BC62D2BDC980";
 
 ESP8266WebServer server(3000);
 
-int ledPin1 = D1;
-int ledPin2 = D2;
+int ledPin1 = D7; //blue
+int ledPin2 = D6; //red
 
 void setup() {
   pinMode(ledPin1, OUTPUT);

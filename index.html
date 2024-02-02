@@ -4,175 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LumosAI_</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <style>
-		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
-		* {
-			margin: 0;
-			padding: 0;
-			font-family: 'Poppins', sans-serif;
-		}
-		body {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			min-height: 100vh;
-			background: #000;
-		}
-		.glow {
-			background-color: #000;
-			margin: 2%;
-			position: relative;
-			display: inline-block;
-			font-size: 1.5em;
-			letter-spacing: .1em;
-			color: #0ef;
-			text-decoration: none;
-			text-transform: uppercase;
-			border: 2px solid #0ef;
-			padding: 10px 30px;
-			z-index: 1;
-			overflow: hidden;
-			transition: color 1s, box-shadow 1s;
-			
-		}
-		.glow:hover {
-			transition-delay: 0s, 1s;
-			color: #fff;
-			box-shadow:
-				0 0 10px #0ef,
-				0 0 20px #0ef,
-				0 0 40px #0ef,
-				0 0 80px #0ef,
-				0 0 160px #0ef;
-		}
-		.glow::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: -50px;
-			width: 0;
-			height: 100%;
-			background: #0ef;
-			transform: skewX(35deg);
-			z-index: -1;
-			transition: 1s;
-		}
-		.glow:hover:before {
-			width: 100%;
-		}
-    </style>
-    <button class="glow" id="ledButton1">Toggle Red</button>
-    <button class="glow" id="ledButton2">Toggle Blue</button>
-	<button class="glow" id="Unlock">Unlock</button>
-	<button class="glow" id="Lock">Lock</button>
-    <script>
-    
-	document.addEventListener('DOMContentLoaded', function () {
-	    const ledButton1 = document.getElementById('ledButton1');
-	    const ledButton2 = document.getElementById('ledButton2');
-		const lock = document.getElementById('Lock');
-		const unlock = document.getElementById('Unlock');
+    <button id="ledbutton1">Toggle Blue</button>
+    <button id="ledbutton2">Toggle Red</button>
+    <button id="AI">Toggle AI Mode</button>
+    <div id='label-container'></div>
 
-	    ledButton1.addEventListener('click', function () {
-			
-    		// Send a request to the ESP8266 when the button is clicked
-        	fetch('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1', {
-              method: "get",
-              headers: new Headers({
-                'Access-Control-Allow-Origin' : '*',
-                'ngrok-skip-browser-warning': '69420',
-              }),
-            })
-		    .then(response => {
-		        if (!response.ok) {
-		            throw new Error('HTTP error! Status: ${response.status}');
-		        }
-		        return response.text();
-		    })
-		    .then(data => {
-		        console.log(data); // Log the response from the ESP8266
-		    })
-		    .catch(error => {
-		        console.error('Error:', error);
-		    });
-	    });
-	    
-	    ledButton2.addEventListener('click', function () {
-	        
-    		// Send a request to the ESP8266 when the button is clicked
-        	fetch('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led2', {
-              method: "get",
-              headers: new Headers({
-                'Access-Control-Allow-Origin' : '*',
-                'ngrok-skip-browser-warning': '69420',
-              }),
-            })
-		    .then(response => {
-		        if (!response.ok) {
-		            throw new Error('HTTP error! Status: ${response.status}');
-		        }
-		        return response.text();
-		    })
-		    .then(data => {
-		        console.log(data); // Log the response from the ESP8266
-		    })
-		    .catch(error => {
-		        console.error('Error:', error);
-		    });
-	    });
+    <div>
+        <p>Times Switched on:</p>
+        <p>Hours Running:</p>
+        <p>Wattage Consumed</p>
+    </div>
 
-		//js for servo control unlock
-		unlock.addEventListener('click', function () {
-			
-			// Send a request to the ESP8266 when the button is clicked
-			fetch('https://bulldog-promoted-accurately.ngrok-free.app/unlock', {
-			method: "get",
-			headers: new Headers({
-				'Access-Control-Allow-Origin' : '*',
-				'ngrok-skip-browser-warning': '69420',
-			}),
-			})
-			.then(response => {
-				if (!response.ok) {
-					throw new Error('HTTP error! Status: ${response.status}');
-				}
-				return response.text();
-			})
-			.then(data => {
-				console.log(data); // Log the response from the ESP8266
-			})
-			.catch(error => {
-				console.error('Error:', error);
-			});
-		});
-
-		//js for servo control lock
-		lock.addEventListener('click', function () {
-			
-			// Send a request to the ESP8266 when the button is clicked
-			fetch('https://bulldog-promoted-accurately.ngrok-free.app/lock', {
-			method: "get",
-			headers: new Headers({
-				'Access-Control-Allow-Origin' : '*',
-				'ngrok-skip-browser-warning': '69420',
-			}),
-			})
-			.then(response => {
-				if (!response.ok) {
-					throw new Error('HTTP error! Status: ${response.status}');
-				}
-				return response.text();
-			})
-			.then(data => {
-				console.log(data); // Log the response from the ESP8266
-			})
-			.catch(error => {
-				console.error('Error:', error);
-			});
-		});
-	});
-    </script>
+	<script rel="script" src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script>
 </body>
 </html>
