@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-const char *ssid = "GNXS-2.4G-BDC980";
-const char *password = "BC62D2BDC980";
+const char *ssid = "todo";
+const char *password = "todotodo";
 
 ESP8266WebServer server(3000);
 
