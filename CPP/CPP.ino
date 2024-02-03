@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-const char *ssid = "todo";
-const char *password = "todotodo";
+const char *ssid = "GNXS-2.4G-BDC980";
+const char *password = "BC62D2BDC980";
 
 ESP8266WebServer server(3000);
 
@@ -27,12 +27,22 @@ void setup() {
 
   server.on("/toggle-led1", HTTP_GET, []() {
       digitalWrite(ledPin1, !digitalRead(ledPin1));
-      server.send(200, "text/plain", "LED Toggled");
+      if (digitalRead(ledPin1) == HIGH){
+        server.send(200, "text/plain", "hall room lights are turned on");
+      }
+      else{
+        server.send(200, "text/plain", "hall room lights are turned off");
+      }
   });
 
   server.on("/toggle-led2", HTTP_GET, []() {
       digitalWrite(ledPin2, !digitalRead(ledPin2));
-      server.send(200, "text/plain", "LED Toggled");
+      if (digitalRead(ledPin2) == HIGH){
+        server.send(200, "text/plain", "Bedroom lights are turned on");
+      }
+      else{
+        server.send(200, "text/plain", "Bedroom lights are turned off");
+      }
   });
 
   server.on("/blink-led1", HTTP_GET, []() {

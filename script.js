@@ -1,6 +1,7 @@
 var isapplied = false;
+var stat = false;
 let class2Value; // Declare a variable to store the value of class 2
-const URL = 'https://teachablemachine.withgoogle.com/models/wjMWbNt3e/';
+const URL = 'https://teachablemachine.withgoogle.com/models/oAHlVxL7O/';
 let recognizer; // Declare recognizer outside the functions to make it accessible in both init and AI event listener
 
 async function createModel() {
@@ -52,10 +53,17 @@ async function init() {
         }
         if(class2Value>95){
             toggleRED();
+            stat = !stat;
+            if (stat){
+                window.speechSynthesis.speak(new SpeechSynthesisUtterance("L E D turned on"));
+            }
+            else{
+                window.speechSynthesis.speak(new SpeechSynthesisUtterance("L E D turned off"));
+            }
         }
     }, {
         includeSpectrogram: true,
-        probabilityThreshold: 0.90,
+        probabilityThreshold: 0.95,
         invokeCallbackOnNoiseAndUnknown: true,
         overlapFactor: 0.50
     });

@@ -51,19 +51,18 @@ def main():
             speak('How may I help you?')
             query = takeCommand().lower()
 
-            if 'turn on the lights' in query:
+            if 'turn on the hall room light' in query:
                 op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1')
                 speak(op.text)
-            elif 'turn off the lights' in query:
+            elif 'turn off the hall room light' in query:
                 op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1')
                 speak(op.text)
-            elif 'drop the scroll' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/unlock')
-                time.sleep(10)
-                speak("The event has started")
-            elif 'initial position' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/lock')
-                speak("Initial position restored")
+            elif 'turn on the bedroom light' in query:
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led2')
+                speak(op.text)
+            elif 'turn off the bedroom light' in query:
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led2')
+                speak(op.text)
             else:
                 speak('Could you say that again please?')
                 main()
