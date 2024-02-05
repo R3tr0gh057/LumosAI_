@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <form id="main">
+        <div class="login-container">
+            <h1>SignUp</h2>
+            <form>
+                <input id="user" type="text" placeholder="Username">
+                <br>
+                <input id="email" type="text" placeholder="Email">
+                <br>
+                <input id="password" type="password" placeholder="Password">
+                <br>
+                <button id="submit" type="submit" onclick="register()">Submit</button>
+            </form>
+        </div>
+    </form>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script rel="script" src="login.js"></script>
+</body>
+</html>

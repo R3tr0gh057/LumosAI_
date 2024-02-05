@@ -3,53 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LumosAI_</title>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <style>
+        :root {
+            --light: #f6f6f9;
+            --primary: #9819d2;
+            --light-primary: #CFE8FF;
+            --grey: #eee;
+            --dark-grey: #AAAAAA;
+            --dark: #363949;
+            --danger: #D32F2F;
+            --light-danger: #FECDD3;
+            --warning: #FBC02D;
+            --light-warning: #FFF2C6;
+            --success: #9819d2;
+            --light-success: #BBF7D0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #181a1e 50%, var(--primary) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .login-container {
+			width: 500px;
+			height: 500px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container input {
+            width: 60%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            background: var(--dark);
+            color: var(--dark);
+            border-bottom: 2px solid var(--primary);
+            outline: none;
+        }
+
+        .login-container button {
+            background-color: var(--primary);
+            font-size: 1.2em;
+            letter-spacing: .1em;
+            color: var(--light);
+            text-decoration: none;
+            text-transform: uppercase;
+            border: 2px solid var(--primary);
+            padding: 10px 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: var(--dark);
+        }
+		h1{
+			font-size: 30px;
+    		font-weight: 700;
+			color: var(--primary);
+		}
+    </style>
 </head>
 <body>
-    <style>
-	body {
-	    font-family: Arial, sans-serif;
-	    text-align: center;
-	    margin: 20px;
-	}
-
-	button {
-	    padding: 10px 20px;
-	    font-size: 16px;
-	    cursor: pointer;
-	}
-    </style>
-    <button id="ledButton">Toggle LED</button>
-	<div>testing webhook</div>
-    <script>
-    
-	document.addEventListener('DOMContentLoaded', function () {
-	    const ledButton = document.getElementById('ledButton');
-
-	    ledButton.addEventListener('click', function () {
-	        
-    		// Send a request to the ESP8266 when the button is clicked
-        	fetch('https://burro-ready-strictly.ngrok-free.app/toggle-led', {
-              method: "get",
-              headers: new Headers({
-                'Access-Control-Allow-Origin' : '*',
-                'ngrok-skip-browser-warning': '69420',
-              }),
-            })
-		    .then(response => {
-		        if (!response.ok) {
-		            throw new Error('HTTP error! Status: ${response.status}');
-		        }
-		        return response.text();
-		    })
-		    .then(data => {
-		        console.log(data); // Log the response from the ESP8266
-		    })
-		    .catch(error => {
-		        console.error('Error:', error);
-		    });
-	    });
-	});
-    </script>
+    <div class="login-container">
+        <h1>LOGIN</h2>
+        <form>
+            <input type="text" placeholder="Username/Mail">
+            <br>
+            <input type="password" placeholder="Password">
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
