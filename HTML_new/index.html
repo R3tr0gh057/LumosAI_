@@ -1,19 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LumosAI_</title>
-	<link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <button id="ledbutton1">Toggle Blue</button>
-    <button id="ledbutton2">Toggle Red</button>
-    <button id="AI">Toggle AI Mode</button>
-    <div id='label-container'></div>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Bar.css" />
+    <link rel="stylesheet" href="Main.css" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <a href="#" class="logo">
+        <i class="bx bx-code-alt"></i>
+        <div class="logo-name"><span>Lumos</span>AI</div>
+      </a>
+      <ul class="side-menu">
+        <li class="active">
+          <a href="#"><i class="bx bxs-dashboard"></i>Dashboard</a>
+        </li>
+        <li>
+          <a href="#"><i class="bx bx-analyse"></i>Analytics</a>
+        </li>
+        <li>
+          <a href="#"><i class="bx bx-cog"></i>Settings</a>
+        </li>
+      </ul>
+      <ul class="side-menu">
+        <li>
+          <a href="#" class="logout">
+            <i class="bx bx-log-out-circle"></i>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- End of Sidebar -->
 
-	<script rel="script" src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script>
-</body>
+    <div class="content">  <!-- Navbar -->
+      <nav>
+        <div class="theme-toggle-container">
+            <label for="theme-toggle" class="theme-toggle-text">Dark Mode</label>
+            <input type="checkbox" id="theme-toggle" hidden />
+            <label for="theme-toggle" class="theme-toggle"></label>
+          </div>
+      </nav>
+    </div>   <!-- End of Navbar -->
+
+    <div class="Main">  <!-- Main -->
+
+      <div class="Controls"> <!-- Control -->
+
+        <div class="Control"> <!-- Light 1-->
+          <h3>Light 1</h3>
+          <div class="container1"> <!-- Toggle 1 -->
+            <input type="checkbox" id="check">
+            <label for="check" class="button"></label>
+          </div> <!-- Toggle 1 End -->
+          <h4 class="LED">Toggel LED</h4>
+          <div class="container2"> <!-- Toggle 2 -->
+            <input type="checkbox" id="check1">
+            <label for="check1" class="button"></label>
+          </div> <!-- Toggle 2 End -->
+          <h4 class="Saving">Power Saving</h4>
+          <div class="basic_info">
+            <h4>Active Time</h4>
+            <h4>Energy Consumed</h4>
+          </div>
+        </div> <!-- Light 1 End-->
+
+        <div class="Control"> <!-- Light 2-->
+          <h3>Light 2</h3>
+          <div class="container1"> <!-- Toggle 1 -->
+            <input type="checkbox" id="check2">
+            <label for="check2" class="button"></label>
+          </div> <!-- Toggle 1 End -->
+          <h4 class="LED">Toggel LED</h4>
+          <div class="container2"> <!-- Toggle 2 -->
+            <input type="checkbox" id="check3">
+            <label for="check3" class="button"></label>
+          </div> <!-- Toggle 2 End -->
+          <h4 class="Saving">Power Saving</h4>
+          <div class="basic_info">
+            <h4>Active Time</h4>
+            <h4>Energy Consumed</h4>
+          </div>
+        </div> <!-- Light 2 End -->
+
+        <div class="Control"> <!-- Light 3-->
+          <h3>Light 3</h3>
+          <div class="container1"> <!-- Toggle 1 -->
+            <input type="checkbox" id="check4">
+            <label for="check4" class="button"></label>
+          </div> <!-- Toggle 1 End -->
+
+          <h4 class="LED">Toggel LED</h4>
+          <div class="container2"> <!-- Toggle 2 -->
+            <input type="checkbox" id="check5">
+            <label for="check5" class="button"></label>
+          </div> <!-- Toggle 2 End -->
+
+         <h4 class="Saving">Power Saving</h4>
+          <div class="basic_info">
+            <h4>Active Time</h4>
+            <h4>Energy Consumed</h4>
+          </div>
+        </div> <!-- Light 3 End -->
+
+        <div class="buttons"> <!-- Buttons -->
+
+          <button>Button1</button>
+          <button>Button2</button>
+
+        </div> <!-- Buttons End --> 
+
+      </div> <!-- Control End -->
+
+
+      <div class="Stats"> <!-- Stats -->
+
+      <div id="chart"> <!-- Graph -->
+
+
+      </div> <!-- Graph End -->
+
+
+      <div class="infos"> <!-- Info -->
+        
+        <div class="info">
+          <h3>Total Energy Consumed</h3>
+
+        </div>
+
+        <div class="info">
+          <h3>Total Time</h3>
+
+        </div>
+
+        <div class="info">
+          <h3>Total Power Saved</h3>
+
+        </div>
+
+      </div> <!-- Basic Info End -->
+
+      </div> <!-- Stats End -->
+
+    </div>   <!-- Main End -->
+  
+
+    <!-- JS for Chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.2/apexcharts.min.js"></script>
+
+    <script src="script.js" async defer></script>
+  </body>
 </html>
