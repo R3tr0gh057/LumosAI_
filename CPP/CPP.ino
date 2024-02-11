@@ -8,6 +8,7 @@ ESP8266WebServer server(3000);
 
 int ledPin1 = D7; //blue
 int ledPin2 = D6; //red
+int temp = 0;
 
 void setup() {
   pinMode(ledPin1, OUTPUT);
@@ -48,6 +49,24 @@ void setup() {
   server.on("/blink-led1", HTTP_GET, []() {
       digitalWrite(ledPin1, !digitalRead(ledPin1));
       server.send(200, "text/plain", "LED Toggled");
+  });
+
+  server.on("/power-saver", HTTP_GET, [](){
+      if (temp == 0) {
+        analogWrite(ledPin1, 100);
+        analogWrite(ledPin2, 100);
+        server.send(200, "text/plain", "Power Saving Mode Activated");
+        temp = 1;
+      }
+      else {
+        analogWrite(ledPin1, 254);
+        analogWrite(ledPin2, 254);
+        server.send(200, "text/plain", "Power Saving Mode Deactivated");
+        temp = 0;
+      }
+      
+      int temp1 = analogRead(ledPin1);
+      Serial.println(temp1);
   });
 
   // Add CORS headers for all requests
