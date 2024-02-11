@@ -1,4 +1,6 @@
 var stat = false;
+const toggle = document.getElementById('check');
+const toggle2 = document.getElementById('check2');
 var isapplied = false;
 let class2Value; // Declare a variable to store the value of class 2
 const URL = 'https://teachablemachine.withgoogle.com/models/wjMWbNt3e/';
@@ -53,7 +55,9 @@ async function init() {
         }
         if(class2Value>95){
             toggleRED();
+            toggle.checked = !toggle.checked;
             toggleBLUE();
+            toggle2.checked = !toggle2.checked;
             stat = !stat;
             if (stat){
                 window.speechSynthesis.speak(new SpeechSynthesisUtterance("L E D turned on"));
@@ -131,6 +135,10 @@ document.addEventListener('DOMContentLoaded', function () {
             AI.classList.remove('active');
             if (recognizer) {
                 recognizer.stopListening(); // Stop listening when AI mode is deactivated
+                const labelContainer = document.getElementById('label-container');
+                while (labelContainer.firstChild) {
+                    labelContainer.removeChild(labelContainer.firstChild);
+                }
             }
         } else {
             AI.classList.add('active');
