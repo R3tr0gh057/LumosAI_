@@ -1,66 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <title>Dashboard</title>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login Page</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="login.css">
   </head>
+
   <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <a href="#" class="logo">
-        <i class="bx bx-code-alt"></i>
-        <div class="logo-name"><span>Lumos</span>AI</div>
-      </a>
-      <ul class="side-menu">
-        <li class="active">
-          <a href="#"><i class="bx bxs-dashboard"></i>Dashboard</a>
-        </li>
-        <li>
-          <a href="#"><i class="bx bx-analyse"></i>Analytics</a>
-        </li>
-        <li>
-          <a href="#"><i class="bx bx-cog"></i>Settings</a>
-        </li>
-      </ul>
-      <ul class="side-menu">
-        <li>
-          <a href="Pages/Login/login.html" class="logout">
-            <i class="bx bx-log-out-circle"></i>
-            Logout
-          </a>
-        </li>
-      </ul>
-    </div>
-    <!-- End of Sidebar -->
-
-    <!-- Navbar -->
-    <div class="content">
-
-      <nav>
-        <i class="bx bx-menu"></i>
-        <div class="theme-toggle-container">
-            <label for="theme-toggle" class="theme-toggle-text">Toggle Theme</label>
-            <input type="checkbox" id="theme-toggle" hidden />
-            <label for="theme-toggle" class="theme-toggle"></label>
+    <div class="container" id="container">
+      <div class="form-container sign-up">
+        <form>
+          <h1>Create Account</h1>
+          <span>Tell us who you are</span>
+          <input id="signup-name" type="text" placeholder="Name" />
+          <input id="signup-email" type="email" placeholder="Email" />
+          <input id="signup-passwd" type="password" placeholder="Password" />
+          <button id="submit-btn-su">Sign Up</button>
+        </form>
+      </div>
+      <div class="form-container sign-in">
+        <form>
+          <h1>Sign In</h1>
+          <span>Use your email and password</span>
+          <input id="login-email" type="email" placeholder="Email" />
+          <input id="login-passwd" type="password" placeholder="Password" />
+          <a href="#">Forgot Your Password?</a>
+          <button id="submit-btn">Sign In</button>
+        </form>
+      </div>
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>Get Started</h1>
+            <p>
+              Register with your personal details to use all of site features
+            </p>
+            <button class="hidden" id="login">Sign In</button>
           </div>
-      </nav>
-
+          <div class="toggle-panel toggle-right">
+            <h1>Hop Back In</h1>
+            <p>Sign in to your account to get the lights going</p>
+            <button class="hidden" id="register">Sign Up</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- End of Navbar -->
-
-    <script src="script.js" async defer></script>
+    <script type="module" src="login.js"></script>
   </body>
 </html>
