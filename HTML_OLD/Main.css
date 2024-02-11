@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --light: #f6f6f9;
+    --primary: #9819d2;
+    --light-primary: #CFE8FF;
+    --grey: #eee;
+    --dark-grey: #AAAAAA;
+    --dark: #363949;
+    --danger: #D32F2F;
+	--light-danger: #FECDD3;
+    --warning: #FBC02D;
+    --light-warning: #FFF2C6;
+    --success: #9819d2;
+    --light-success: #BBF7D0;
+}
+
+*{
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+.Main{
+    width: 93%;
+    height: 90vh; 
+    position: relative;
+    left: 13.7rem;
+    display: flex;
+    transition: 0.3s;
+    color: var(--dark);
+}
+
+
+/*********************
+**********************
+
+    Controls
+
+**********************
+*********************/
+
+
+.Controls{
+    width: 40%;
+    height: auto;
+    margin: 10px;
+}
+
+.Controls .Control{
+    margin: 10px;
+    background-color: var(--light);
+    border-radius: 20px;
+    width: 100%;
+    height: 20%;
+
+}
+
+.Controls .Control h3{
+    padding: 10px;
+}
+
+
+/*********************
+**********************
+
+        Stats
+
+**********************
+*********************/
+
+.Stats{
+    width: 52%;
+    height: auto;
+    background-color: var(--light);
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+    border-radius: 20px;
+}
+
+.Stats #chart{
+    
+    margin: 10px;
+    width: 97%;
+    height: 70%;
+    border-radius: 10px;
+}
+
+.Stats .infos{
+    width: 100%;
+    height: 27%;
+    display: flex;
+}
+
+.Stats .infos .info{
+
+    background-color: var(--grey);
+    width: 31%;
+    height: 90%;
+    margin: 10px;
+    border-radius: 20px;
+
+}
+
+
+
+/*********************
+**********************
+
+    Responsive
+
+**********************
+*********************/
+
+
+
+@media (max-width: 1385px) {
+   .Main,
+   .Main .Stats{
+    left: 3.4rem;
+   }
+ 
+  }
+
+
+  @media (max-width: 1740px) {
+    .Main .Stats{
+     width: 51%;
+    }
+
+   }
+
+   @media (max-width: 1640px) {
+    .Main .Stats{
+     width: 50%;
+    }
+   }
+
+   @media (max-width: 1540px) {
+    .Main .Stats{
+     width: 49%;
+    }
+   }
+
+   @media (max-width: 1440px) {
+    .Main .Stats{
+     width: 48%;
+    }
+
+
+   }
+
+
+
+
+
+@media (max-width: 1385px) {
+
+    .Main .Stats{
+        position:relative;
+        width: 80%;
+        left: 1rem;
+       }
+
+    }
+
+
+@media (max-width: 1200px) {
+
+    .Main{
+        
+        display: flex;
+      
+    }
+    .Controls{
+        width: 50%;
+        height: auto;
+        transition: 0.2s;
+    }
+
+    }
+
+
+
+
+   
+@media (max-width: 1385px) {
+    .content{
+        left: 60px;
+        width: 93%;
+        border-radius: 20px;
+    }
+   }
+
+
+
+
+
+
+
+/*********************
+**********************
+
+        Button
+
+**********************
+*********************/
+
+
+
+.container1{
+    background-color: transparent;
+    display: flex;
+    position: relative;
+    left:80%;
+    top: -13%;
+    width: 10%;
+    
+}
+
+.container2{
+    background-color: transparent;
+    display: flex;
+    position: relative;
+    left:80%;
+    top: -20%;
+    width: 10%;
+    
+}
+
+.Main .Controls .Control .LED{
+
+    position: relative;
+    left: 77.5%;
+    width: 20%;
+    top:-60%
+
+}
+
+.Main .Controls .Control .Saving{
+
+    position: relative;
+    left: 77%;
+    width: 20%;
+    top:-70%
+
+}
+
+.button{
+    display: block;
+    min-width: 50px;
+    height: 25px;
+    background: var(--grey);
+    cursor: pointer;
+    position: relative;
+    border-radius: 25px;
+}
+.button::before{
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  width: calc(25px - 4px);
+  background: var(--primary);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+
+input:checked + .button::before{
+    transform: translateX(25px);
+}
+
+input{
+    display: none;
+}
+
+
+
+
+/*********************
+**********************
+
+    Basic Info
+
+**********************
+*********************/
+
+
+
+.Main .Controls .basic_info{
+
+    position: relative;
+    top:-130%;
+    padding: 10px;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*********************
+**********************
+
+    Info_Under_Stats
+
+**********************
+*********************/
+
+.Main .Stats .infos .info{
+
+    padding: 10px;
+}
+
+/*********************
+**********************
+
+    Big Buttons
+
+**********************
+*********************/
+
+.Main .Controls .buttons{
+
+    width: 100%;
+    height: 20%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+button{
+
+    color: var(--light);
+    padding: 0px 110px;
+    border-radius: 20px;
+    border: #9819d2;
+    background: var(--primary);
+    transition: all 0.2s ease;
+}
+
+button:active{
+
+    transform: scale(0.96);
+}
+
+button:hover{
+
+    box-shadow: 0 0 5px #9819d2 ,0 0 25px #9819d2,0 0 30px #9819d2;
+
+}
+
