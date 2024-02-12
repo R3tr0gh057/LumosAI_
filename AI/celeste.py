@@ -63,6 +63,10 @@ def main():
             elif 'turn off the bedroom light' in query:
                 op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led2')
                 speak(op.text)
+            elif 'turn on power saver' in query:
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/power-saver')
+            elif 'turn off the power saver' in query:
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/power-saver')
             else:
                 speak('Could you say that again please?')
                 main()

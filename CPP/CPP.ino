@@ -1,14 +1,15 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-const char *ssid = "Celeste_2.4";
-const char *password = "7907003596";
+const char *ssid = "todo";
+const char *password = "todotodo";
 
 ESP8266WebServer server(3000);
 
 int ledPin1 = D7; //blue
 int ledPin2 = D6; //red
 int temp = 0;
+int temp2 = 0;
 
 void setup() {
   pinMode(ledPin1, OUTPUT);
@@ -51,22 +52,33 @@ void setup() {
       server.send(200, "text/plain", "LED Toggled");
   });
 
-  server.on("/power-saver", HTTP_GET, [](){
+  server.on("/power-saver1", HTTP_GET, [](){
       if (temp == 0) {
         analogWrite(ledPin1, 100);
-        analogWrite(ledPin2, 100);
         server.send(200, "text/plain", "Power Saving Mode Activated");
         temp = 1;
       }
       else {
         analogWrite(ledPin1, 254);
-        analogWrite(ledPin2, 254);
         server.send(200, "text/plain", "Power Saving Mode Deactivated");
         temp = 0;
       }
       
       int temp1 = analogRead(ledPin1);
       Serial.println(temp1);
+  });
+
+  server.on("/power-saver2", HTTP_GET, [](){
+      if (temp2 == 0) {
+        analogWrite(ledPin2, 100);
+        server.send(200, "text/plain", "Power Saving Mode Activated");
+        temp2 = 1;
+      }
+      else {
+        analogWrite(ledPin2, 254);
+        server.send(200, "text/plain", "Power Saving Mode Deactivated");
+        temp2 = 0;
+      }
   });
 
   // Add CORS headers for all requests

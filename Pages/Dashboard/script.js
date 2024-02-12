@@ -1,7 +1,4 @@
 const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
 const toggler = document.getElementById('theme-toggle');
 
@@ -18,7 +15,6 @@ toggler.addEventListener('change', function () {
 
 //Chart
 
-/*
 var options = {
     series: [{
     name: 'Power usage',
@@ -73,8 +69,8 @@ var options = {
 
   var chart = new ApexCharts(document.querySelector("#chart"), options);
   chart.render();
-*/
 
+/*
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyClFl9Z83m1_cKfjOBWmgPASfh6JxBEbt4",
@@ -88,67 +84,133 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getDataxbase(app);
+const db = getFirestore(app);
 
-// Function to get current date in YYYY-MM-DD format
-function getCurrentDate() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = (now.getMonth() + 1).toString().padStart(2, '0');
-  const day = now.getDate().toString().padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
+//type 1
+// Initialize variables
+let timeON = 0;
+let led1Times = 0;
+let led2Times = 0;
 
-// Function to update LED activation in Firebase Realtime Database
-function updateLEDActivation(ledId, durationInSeconds) {
-  const timestamp = Date.now();
-  set(ref(db, `LED_activations/${getCurrentDate()}/${ledId}`).set(durationInSeconds));
-}
+// Function to start timer when checkbox is checked
+function startTimer() {
+  let startTime = Date.now();
+  const timerInterval = setInterval(() => {
+    timeON = Math.floor((Date.now() - startTime) / 1000);
+  }, 1000);
 
-// Add event listeners to toggle switches
-document.querySelectorAll('.container1 input[type="checkbox"]').forEach(function(toggle, index) {
-  toggle.addEventListener('change', function(event) {
-    const now = Date.now();
-    const checked = event.target.checked;
-    if (checked) {
-      toggle.dataset.startTime = now;
-    } else {
-      const startTime = parseInt(toggle.dataset.startTime);
-      const durationInSeconds = (now - startTime) / 1000;
-      updateLEDActivation(`toggle${index + 1}`, durationInSeconds);
-      delete toggle.dataset.startTime;
+  // Stop timer when checkbox is unchecked
+  document.getElementById("check").addEventListener("change", function () {
+    if (!this.checked) {
+      clearInterval(timerInterval);
+      // Store data in Firestore
+      storeData();
     }
   });
-});
 
-// Chart rendering
-var options = {
-  series: [{
-    name: 'LED Activations',
-    data: [] // Data will be fetched from Firebase
-  }],
-  chart: {
-    height: 350,
-    type: 'line',
-  },
-  xaxis: {
-    type: 'datetime'
-  }
-};
+  document.getElementById("check2").addEventListener("change", function () {
+    if (!this.checked) {
+      clearInterval(timerInterval);
+      // Store data in Firestore
+      storeData();
+    }
+  });
+}
 
-var chart = new ApexCharts(document.querySelector("#chart"), options);
-chart.render();
+// Function to increment variables
+function incrementVariables() {
+  document.getElementById("check").addEventListener("change", function () {
+    led1Times++;
+  });
 
-// Listen for changes in LED activations and update the chart
-firebase.database().ref(db,'LED_activations').on('value', function(snapshot) {
-  const data = snapshot.val();
-  if (data) {
-    const dates = Object.keys(data).sort();
-    const seriesData = dates.map(date => {
-      const totalActivation = Object.values(data[date]).reduce((acc, curr) => acc + curr, 0);
-      return [new Date(date), totalActivation];
+  document.getElementById("check2").addEventListener("change", function () {
+    led2Times++;
+  });
+}
+
+// Function to calculate regular and saver variables
+function calculateVariables() {
+  const regular = 10 / timeON;
+  const saver = 5 / timeON;
+  return { regular, saver };
+}
+
+// Function to store data in Firestore
+async function storeData() {
+  const { regular, saver } = calculateVariables();
+  try {
+    const docRef = await addDoc(collection(db, "energyData"), {
+      timeON,
+      led1Times,
+      led2Times,
+      regular,
+      saver,
+      timestamp: Date.now(),
     });
-    chart.updateSeries([{ data: seriesData }]);
+    console.log("Data stored in Firestore with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
   }
-});
+}
+
+// Function to plot graph using Chart.js
+function plotGraph() {
+  onSnapshot(collection(db, "energyData"), (querySnapshot) => {
+    let regularData = [];
+    let saverData = [];
+    let labels = [];
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      labels.push(new Date(data.timestamp).getHours());
+      if (data.regular) regularData.push(data.regular);
+      if (data.saver) saverData.push(data.saver);
+    });
+
+    // Plot graph
+    const ctx = document.getElementById("chart").getContext("2d");
+    const chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: "Regular",
+            data: regularData,
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+            fill: false,
+          },
+          {
+            label: "Saver",
+            data: saverData,
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1,
+            fill: false,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                stepSize: 1,
+              },
+            },
+          ],
+        },
+      },
+    });
+  });
+}
+
+// Start the timer and plot the graph
+window.onload = function () {
+  startTimer();
+  incrementVariables();
+  plotGraph();
+  */

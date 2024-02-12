@@ -74,6 +74,53 @@ async function init() {
     });
 }
 
+//powersaver1
+async function power_saver1() {
+    // Send a request to the ESP8266 when the button is clicked
+    fetch('https://bulldog-promoted-accurately.ngrok-free.app/power-saver1', {
+        method: "get",
+        headers: new Headers({
+            'Access-Control-Allow-Origin': '*',
+            'ngrok-skip-browser-warning': '69420',
+        }),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('HTTP error! Status: ${response.status}');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log(data); // Log the response from the ESP8266
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+//powersaver2
+async function power_saver2() {
+    // Send a request to the ESP8266 when the button is clicked
+    fetch('https://bulldog-promoted-accurately.ngrok-free.app/power-saver2', {
+        method: "get",
+        headers: new Headers({
+            'Access-Control-Allow-Origin': '*',
+            'ngrok-skip-browser-warning': '69420',
+        }),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('HTTP error! Status: ${response.status}');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log(data); // Log the response from the ESP8266
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
 //red
 async function toggleRED() {
@@ -126,11 +173,13 @@ async function toggleBLUE() {
 document.addEventListener('DOMContentLoaded', function () {
     const ledbutton1 = document.getElementById('check');
     const ledbutton2 = document.getElementById('check2');
+    const powersaver1 = document.getElementById('check1');
+    const powersaver2 = document.getElementById('check3');
     const AI = document.getElementById('AI');
 
     // js for AI mode
     AI.addEventListener('click', function () {
-        // apply glow
+        // apply change
         if (AI.classList.contains('active')) {
             AI.classList.remove('active');
             if (recognizer) {
@@ -164,6 +213,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         else if (!ledbutton2.checked) {
             toggleBLUE();
+        }
+    });
+
+    // js for powersaver1
+    powersaver1.addEventListener('change', function () {
+        if (powersaver1.checked) {
+            power_saver1();
+        }
+        else if (!powersaver1.checked) {
+            power_saver1();
+        }
+    });
+
+    // js for powersaver2
+    powersaver2.addEventListener('change', function () {
+        if (powersaver2.checked) {
+            power_saver2();
+        }
+        else if (!powersaver2.checked) {
+            power_saver2();
         }
     });
 });
