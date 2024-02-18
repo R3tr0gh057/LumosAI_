@@ -1,7 +1,7 @@
 @echo off
 
 :: Open a new Command Prompt window and run ngrok
-start cmd /k "ngrok http --domain=bulldog-promoted-accurately.ngrok-free.app http://192.168.64.84:3000/"
+start cmd /k "ngrok http --domain=bulldog-promoted-accurately.ngrok-free.app http://192.168.54.84:3000/"
 
 :: Run Python script
 echo Running Python script...

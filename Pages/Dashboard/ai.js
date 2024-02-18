@@ -1,6 +1,15 @@
 var stat = false;
 const toggle = document.getElementById('check');
 const toggle2 = document.getElementById('check2');
+
+// builtin speech variables
+const test = document.getElementById('test');
+const test1 = document.getElementById('test1');
+
+const recognition = new window.webkitSpeechRecognition();
+recognition.continuous = true;
+recognition.lang = 'en-US';
+
 var isapplied = false;
 let class2Value; // Declare a variable to store the value of class 2
 const URL = 'https://teachablemachine.withgoogle.com/models/wjMWbNt3e/';
@@ -170,6 +179,12 @@ async function toggleBLUE() {
         });
 }
 
+// inbuilt speech integration
+function speak(text) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(utterance)
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     const ledbutton1 = document.getElementById('check');
     const ledbutton2 = document.getElementById('check2');
@@ -235,4 +250,60 @@ document.addEventListener('DOMContentLoaded', function () {
             power_saver2();
         }
     });
+
+    //js for speech recognition and speech output
+     let isRecognitionActive = false;
+
+     test.addEventListener('click', () => {
+         if (!isRecognitionActive) {
+             recognition.start();
+             test.textContent = 'Listening...';
+             isRecognitionActive = true;
+         }
+     });
+     
+     test1.addEventListener('click', () => {
+         recognition.stop();
+         test.textContent = 'Voice Control';
+         isRecognitionActive = false;
+     });
+     
+     recognition.onresult = (event) => {
+        i = 0;
+        const result = event.results[event.results.length - 1];
+        const transcript = result[i].transcript;
+        test.textContent = `You said: ${transcript}`;
+     
+        if (transcript == 'toggle red') {
+            toggleRED();
+            speak('red LED toggled');
+        }
+        else if (transcript == 'toggle blue') {
+            toggleBLUE();
+            speak('blue LED toggled');
+        }
+
+        i+=1;
+    };
+
+     test.addEventListener('change', () =>{
+        const result = event.results[event.results.length - 1];
+        const transcript = result[0].transcript;
+        test.textContent = `You said: ${transcript}`;
+    
+        if (transcript == 'toggle red') {
+            toggleRED();
+            speak('red LED toggled');
+        }
+        else if (transcript == 'toggle blue') {
+            toggleBLUE();
+            speak('blue LED toggled');
+        }
+     })
+     
+     // Handle errors
+     recognition.onerror = (event) => {
+         console.error('Speech recognition error:', event.error);
+         isRecognitionActive = false;
+     };     
 });
