@@ -34,22 +34,34 @@ saved_model
 Use the following commands in sequence:
 
 ```bash
-python PreparingData.py --wakepath "path" --wakereps int --backpath "path" --backreps int
+python PreparingData.py
 ```
 
-This will prompt you to record yourself saying the hotword 100 times as default, you can change the amount of samples by adjusting the parameters.
+This will prompt you to record yourself saying the hotword 100 times as default, you can change the amount of samples by adjusting the parameters in the script.
 
 ```bash
-python PreProcessingData.py --path <path>
+python PreProcessingData.py
 ```
 
 This will create the audio data upon which the ai will be trained.
 
 ```bash
-python training.py --path <path>
+python training.py
 ```
 
-This will use the audio data and create a trained model which can be used to determine if the wake word is present in a recorded voide note.
+This will use the audio data and create a trained model which can be used to determine if the wake word is present in a recorded voide note, in addition, a confusion matrix will be plotted to futher show the training result.
+
+```bash
+python RunParallely.py
+```
+
+This will run a program that uses the trained data to compare the newly recorded audio data's spectrogram and compares it with the trained data points. If the data points match, it will return true and asks the user for the query. To just test the training data, use the following:
+
+```bash
+python prediction.py
+```
+
+This will tell you if the custom hotword is present in the newly recording data.
 
 
 
@@ -58,3 +70,11 @@ START THE NGROK SERVER USING THE FOLLOWING:
 ```bash
 ngrok http --domain=bulldog-promoted-accurately.ngrok-free.app http://ip:port/
 ```
+
+AUTOMATE THE SCRIPT BY USING THE FOLLOWING:
+
+```bash
+./lumos.bat
+```
+
+This will run the hosting script and the ai script simultaniously.
