@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="Bar.css" />
-    <link rel="stylesheet" href="Main.css" />
+    <link rel="stylesheet" href="new.css" />
     <title>Dashboard</title>
   </head>
   <body>
@@ -68,102 +68,124 @@
         <div class="Control">
           <!-- Light 1-->
           <h3>Light 1</h3>
-          <div class="container1">
-            <!-- Toggle 1 -->
-            <input type="checkbox" id="check" />
-            <label for="check" class="button"></label>
-          </div>
-          <!-- Toggle 1 End -->
-          <h4 class="LED">Toggle LED</h4>
-          <div class="container2">
-            <!-- Toggle 2 -->
-            <input type="checkbox" id="check1" />
-            <label for="check1" class="button"></label>
-          </div>
-          <!-- Toggle 2 End -->
-          <h4 class="Saving">Power Saving</h4>
           <div class="basic_info">
-            <h4>Active Time</h4>
-            <div class="container_for_info1">
-              <p>5hours</p>
+            <div class="container_for_info">
+              <h4>Active Time</h4>
+              <p id="led1time">5hours</p>
             </div>
-            <h4>Energy Consumed</h4>
-            <div class="container_for_info2">
-              <p>7wh</p>
+            
+            <div class="container_for_info">
+              <h4>Energy Consumed</h4>
+              <p id="led1power">7wh</p>
             </div>
           </div>
+          <div class="toggles">
+            <div class="hold">
+              <h4 class="LED">Toggle LED</h4>
+              <div class="container1">
+                <!-- Toggle 1 -->
+                <input type="checkbox" id="check" />
+                <label for="check" class="button"></label>
+              </div>
+              <!-- Toggle 1 End -->
+            </div> 
+            <div class="hold">
+              <h4 class="Saving">Power Saving</h4>
+                <div class="container2">
+                  <!-- Toggle 2 -->
+                  <input type="checkbox" id="check1" />
+                  <label for="check1" class="button"></label>
+                </div>
+                <!-- Toggle 2 End -->
+              </div>
+          </div>   
         </div>
         <!-- Light 1 End-->
 
         <div class="Control">
           <!-- Light 2-->
           <h3>Light 2</h3>
-          <div class="container1">
-            <!-- Toggle 1 -->
-            <input type="checkbox" id="check2" />
-            <label for="check2" class="button"></label>
-          </div>
-          <!-- Toggle 1 End -->
-          <h4 class="LED">Toggle LED</h4>
-          <div class="container2">
-            <!-- Toggle 2 -->
-            <input type="checkbox" id="check3" />
-            <label for="check3" class="button"></label>
-          </div>
-          <!-- Toggle 2 End -->
-          <h4 class="Saving">Power Saving</h4>
           <div class="basic_info">
-            <h4>Active Time</h4>
-            <div class="container_for_info1">
-              <p>5hours</p>
+            <div class="container_for_info">
+              <h4>Active Time</h4>
+              <p id="led2time">5hours</p>
             </div>
-            <h4>Energy Consumed</h4>
-            <div class="container_for_info2">
-              <p>7wh</p>
+            <div class="container_for_info">
+              <h4>Energy Consumed</h4>
+              <p id="led2power">7wh</p>
             </div>
           </div>
-        </div>
+          <div class="toggles">
+            <div class="hold">
+              <h4 class="LED">Toggle LED</h4>
+              <div class="container1">
+                <!-- Toggle 2 -->
+                <input type="checkbox" id="check2" />
+                <label for="check1" class="button"></label>
+              </div>
+              <!-- Toggle 2 End -->
+            </div> 
+            <div class="hold">
+              <h4 class="Saving">Power Saving</h4>
+                <div class="container2">
+                  <!-- Toggle 3 -->
+                  <input type="checkbox" id="check3" />
+                  <label for="check1" class="button"></label>
+                </div>
+                <!-- Toggle 3 End -->
+              </div>
+          </div> 
+        </div>  
         <!-- Light 2 End -->
 
         <div class="Control">
           <!-- Light 3-->
           <h3>Light 3</h3>
-          <div class="container1">
-            <!-- Toggle 1 -->
-            <input type="checkbox" id="check4" />
-            <label for="check4" class="button"></label>
-          </div>
-          <!-- Toggle 1 End -->
-
-          <h4 class="LED">Toggle LED</h4>
-          <div class="container2">
-            <!-- Toggle 2 -->
-            <input type="checkbox" id="check5" />
-            <label for="check5" class="button"></label>
-          </div>
-          <!-- Toggle 2 End -->
-
-          <h4 class="Saving">Power Saving</h4>
           <div class="basic_info">
-            <h4>Active Time</h4>
-            <div class="container_for_info1">
-              <p>5hours</p>
+            <div class="container_for_info">
+              <h4>Active Time</h4>
+              <p>0hours</p>
             </div>
 
-            <h4>Energy Consumed</h4>
-            <div class="container_for_info2">
-              <p>7wh</p>
+            <div class="container_for_info">
+              <h4>Energy Consumed</h4>
+              <p>0wh</p>
             </div>
           </div>
-        </div>
+          <div class="toggles">
+            <div class="hold">
+              <h4 class="LED">Toggle LED</h4>
+              <div class="container1">
+                <!-- Toggle 1 -->
+                <input type="checkbox" id="check" />
+                <label for="check" class="button"></label>
+              </div>
+              <!-- Toggle 1 End -->
+            </div> 
+            <div class="hold">
+              <h4 class="Saving">Power Saving</h4>
+                <div class="container2">
+                  <!-- Toggle 2 -->
+                  <input type="checkbox" id="check1" />
+                  <label for="check1" class="button"></label>
+                </div>
+                <!-- Toggle 2 End -->
+            </div>
+          </div> 
+        </div>  
         <!-- Light 3 End -->
 
         <div class="buttons">
           <!-- Buttons -->
-
-          <button id="AI">Snap Control</button>
-          <button id="test">Voice Control</button>
-          <button id="test1">Stop Voice</button>
+          <div>
+            <button id="AI">Snap Control</button>
+          </div>
+          <div>
+            <button id="test1">Stop Voice</button>
+          </div>
+          <div>
+            <button id="test">Voice Control</button>
+          </div>
         </div>
         <!-- Buttons End -->
       </div>
@@ -180,17 +202,17 @@
 
           <div class="info">
             <h3>Total Energy Consumed</h3>
-            <p>15Kwh</p>
+            <p id="totalenergy">15Kwh</p>
           </div>
 
           <div class="info">
             <h3>Total Time</h3>
-            <p>10Hours</p>
+            <p id="totaltime">10Hours</p>
           </div>
 
           <div class="info">
             <h3>Total Power Saved</h3>
-            <p>8kwh</p>
+            <p id="totalsavedenergy">8kwh</p>
           </div>
           <div id="label-container"></div>
         </div>
@@ -205,6 +227,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.2/apexcharts.min.js"></script>
     <script src="ai.js"></script>
-    <script type="module" src="script.js" async defer></script>
+    <script type="module" src="temp.js" async defer></script>
   </body>
 </html>

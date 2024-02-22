@@ -55,7 +55,7 @@ body{
     top: 0;
     left: 0;
     background: var(--light);
-    width: 230px;
+    width: 195px;
     height: 100%;
     z-index: 2000;
     overflow-x: hidden;
@@ -172,8 +172,8 @@ body{
 
 .content{
     position: relative;
-    width: calc(100% - 230px);
-    left: 230px;
+    width: 93%;
+    left: 60px;
     transition: all 0.3s ease;
 }
 
@@ -289,8 +289,3 @@ body{
 }
 
 
-@media (max-width: 1385px) {
-    .sidebar{
-        width: 55px;
-    }
-   }

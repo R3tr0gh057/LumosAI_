@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --light: #f6f6f9;
+    --primary: #9819d2;
+    --light-primary: #CFE8FF;
+    --grey: #eee;
+    --dark-grey: #AAAAAA;
+    --dark: #363949;
+    --danger: #D32F2F;
+	--light-danger: #FECDD3;
+    --warning: #FBC02D;
+    --light-warning: #FFF2C6;
+    --success: #9819d2;
+    --light-success: #BBF7D0;
+}
+
+*{
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/*********************
+**********************
+
+    Layout
+
+**********************
+*********************/
+
+.Main{
+    background-color: var(--grey);
+    margin: 0rem 4rem;
+    display: flex;
+    min-width: 90%;
+    flex-direction: column;
+    color: var(--dark);
+}
+
+.Controls{
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+}
+
+.Control{
+    background-color: var(--light);
+    position: relative;
+    margin: 7px;
+    display: flex;
+    min-width: 90%;
+    border-radius: 20px;
+}
+
+.Control h3{
+    margin-left: 20px;
+}
+
+/* Basic Info */
+
+.Main .basic_info{
+    display: flex;
+    margin-top: 5rem;
+    position: relative;
+    left: -70px;
+
+}
+
+.container_for_info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+}
+
+.container_for_info p{
+    margin: 10px;
+}
+
+/* Toggles */
+
+.toggles{
+    position: absolute;
+    width: 35%;
+    right:10%;
+    margin: 0px;
+}
+
+.Control .hold{
+    display: flex;
+    position: relative;
+    right: -40%;
+    min-width: 60%;
+    max-width: 60%;
+    flex-direction: column;
+}
+
+.container1{
+    background-color: transparent;
+    width: 10%;
+    margin-left: 20px;
+    
+}
+
+.container2{
+    background-color: transparent;
+    width: 10%;
+    margin-left: 20px;
+    
+}
+
+.button{
+    display: block;
+    min-width: 50px;
+    height: 25px;
+    background: var(--grey);
+    cursor: pointer;
+    position: relative;
+    border-radius: 25px;
+}
+.button::before{
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  width: calc(25px - 4px);
+  background: var(--primary);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+
+input:checked + .button::before{
+    transform: translateX(25px);
+}
+
+input{
+    display: none;
+}
+
+/*********************
+**********************
+
+    Big Buttons
+
+**********************
+*********************/
+
+
+.Main .Controls .buttons{
+
+    position: relative;
+    width: 100%;
+    margin: 20px 0px;
+    min-width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+button{
+    
+    color: var(--dark);
+    font-size: larger;
+    padding: 30px 50px;
+    margin:0px 10px;
+    border-radius: 20px;
+    border: #9819d2;
+    background: var(--primary);
+    transition: all 0.2s ease;
+}
+
+button:active{
+
+    transform: scale(0.96);
+    background: var(--dark);
+    border: var(--primary);
+    color: var(--light);
+    border-color: var(--primary);
+}
+
+.Main .Controls .buttons .active{
+
+    background-color: var(--light);
+    color: var(--dark);
+    border-color: var(--primary);
+    border-style:solid;
+    border-width: 7px;
+
+}
+
+/*********************
+**********************
+
+        Stats
+
+**********************
+*********************/
+
+.Stats{
+    background-color: var(--light);
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+#chart{
+    margin: 10px;
+}
+
+.Stats .infos{
+    display: flex;
+    justify-content: space-around;
+}
+
+.Stats .infos .info{
+    background-color: var(--grey);
+    margin: 30px;
+    width: 30%;
+    border-radius: 20px;
+}
+
+.Stats .infos .info h3{
+    text-align: center;
+}
+
+.Stats .infos .info p{
+    text-align: center;
+}
+
+/*********************
+**********************
+
+    Responsive
+
+**********************
+*********************/
+
+
+@media (orientation: portrait){
+    .Main{
+        margin: 0 3rem;
+    }
+
+    .basic_info{
+        flex-direction: column;
+    }
+    
+    .buttons{
+        flex-direction: column;
+        height: 25rem;
+        align-items: center;
+    }
+
+    .toggles{
+        width: 50%;
+        margin-top: 90px;
+    }
+    
+    .Stats{
+        margin: 5px;
+    }
+
+    .infos{
+        flex-direction: column;
+        width: 100%;
+    }
+    .info{
+        min-width: 90%;
+    }
+}
+
+
+@media (min-width: 1200px){
+
+    .Main{
+        flex-direction: row;
+        margin-left: 5rem;
+    }
+
+    .Controls{
+        min-width: 50%;
+    }
+
+    .Stats{
+        min-width: 50%;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+
+}
+
+@media (min-width: 1400px){
+    .Main{
+        padding-left: 11rem;
+    }
+
+    .Controls{
+        min-width: 30%;
+    }
+
+    .Stats{
+        min-width: 50%;
+    }
+
+    .content{
+        width: 86%;
+        left: 13rem;
+    }
+
+}
+
+@media (max-width: 1400px) {
+    .sidebar{
+        width: 54px;
+    }
+}

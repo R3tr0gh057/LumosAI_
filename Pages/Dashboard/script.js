@@ -1,3 +1,6 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
 const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
 
 const toggler = document.getElementById('theme-toggle');
@@ -15,6 +18,7 @@ toggler.addEventListener('change', function () {
 
 //Chart
 
+/*
 var options = {
     series: [{
     name: 'Power usage',
@@ -69,8 +73,9 @@ var options = {
 
   var chart = new ApexCharts(document.querySelector("#chart"), options);
   chart.render();
+*/
 
-/*
+
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyClFl9Z83m1_cKfjOBWmgPASfh6JxBEbt4",
@@ -88,9 +93,12 @@ const db = getFirestore(app);
 
 //type 1
 // Initialize variables
-let timeON = 0;
-let led1Times = 0;
-let led2Times = 0;
+var timeON = 0;
+var led1Times = 0;
+var led2Times = 0;
+var regular = 0;
+var saver = 0;
+
 
 // Function to start timer when checkbox is checked
 function startTimer() {
@@ -120,18 +128,18 @@ function startTimer() {
 // Function to increment variables
 function incrementVariables() {
   document.getElementById("check").addEventListener("change", function () {
-    led1Times++;
+    led1Times+=1;
   });
 
   document.getElementById("check2").addEventListener("change", function () {
-    led2Times++;
+    led2Times+=1;
   });
 }
 
 // Function to calculate regular and saver variables
 function calculateVariables() {
-  const regular = 10 / timeON;
-  const saver = 5 / timeON;
+  regular += 10 / timeON;
+  saver += 5 / timeON;
   return { regular, saver };
 }
 
@@ -194,16 +202,14 @@ function plotGraph() {
       },
       options: {
         scales: {
-          yAxes: [
-            {
-              ticks: {
+            y: {
                 beginAtZero: true,
-                stepSize: 1,
-              },
-            },
-          ],
-        },
-      },
+                ticks: {
+                    stepSize: 1
+                }
+            }
+        }
+    }
     });
   });
 }
@@ -213,4 +219,4 @@ window.onload = function () {
   startTimer();
   incrementVariables();
   plotGraph();
-  */
+}
