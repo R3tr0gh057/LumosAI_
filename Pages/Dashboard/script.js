@@ -66,7 +66,7 @@ var timestamp = await getSpecificFieldSorted(collectionName, "timestamp");
   led2time.textContent = (totalduration2/3600).toFixed(3) + "hrs";
   led2power.textContent = totalled2usage.toFixed(3) + "wh";
   totalenergy.textContent = totalRegular.toFixed(3) + "wh";
-  totaltime.textContent = totalusage + "hrs";
+  totaltime.textContent = ((totalusage)/3600).toFixed(3) + "hrs";
   totalsavedenergy.textContent = (totalRegular-totalSaver).toFixed(3) + "wh"
   
 
@@ -79,6 +79,8 @@ var timestamp = await getSpecificFieldSorted(collectionName, "timestamp");
   var led1regularusage = 0;
   var led2regularusage = 0;
   var saverusage = 0;
+  var regularpersecond = 10/3600;
+  var saverpersecond = 7/3600;
 
   // Function to fetch all documents from a collection and store them in an array
 async function getAllDocuments(collectionName) {
@@ -119,7 +121,7 @@ async function getSpecificField(collectionName, fieldName) {
         const data = doc.data();
         if (data.hasOwnProperty(fieldName)) { // Check if the field exists in the document
           const fieldValue = data[fieldName];
-          const roundedValue = parseFloat(fieldValue).toFixed(1); // Round to one decimal place
+          const roundedValue = parseFloat(fieldValue).toFixed(3); // Round to one decimal place
           fieldValues.push(parseFloat(roundedValue)); // Parse the rounded value back to a float and push to the array
         }
       });
@@ -148,7 +150,7 @@ async function getSpecificFieldSorted(collectionName, fieldName) {
           }
         });
         // Sort the field values in ascending order
-        fieldValues.sort((a, b) => a - b); // Change to b - a for descending order
+        fieldValues.sort((a, b) => b - a); // Change to b - a for descending order
         return fieldValues;
       } catch (error) {
         console.error("Error fetching field values: ", error);
@@ -174,8 +176,11 @@ function toggleCheckTimer() {
             const duration = endTime - startTime;
             led1timeON = Math.floor((Date.now() - startTime) / 1000);
             console.log("Timer for checkbox 'check' stopped. Duration:", led1timeON, "seconds");
-            led1regularusage = 10 / led1timeON;
-            saverusage = 5 / (led1timeON+led2duration);
+            let a = led1timeON !== 0 ? regularpersecond * led1timeON : 0;
+            let b = led1timeON !== 0 ? saverpersecond * led1timeON : 0;
+            
+            led1regularusage = a.toFixed(3)
+            saverusage = b.toFixed(3);
             storeData();
         }
     });
@@ -200,8 +205,11 @@ function toggleCheck1Timer() {
             const duration = endTime - startTime;
             led2timeON = Math.floor((Date.now() - startTime) / 1000);
             console.log("Timer for checkbox 'check1' stopped. Duration:", led2timeON, "seconds");
-            led2regularusage = 10 / led2duration;
-            saverusage = 5 / (led1timeON+led2duration);
+            let a = led2timeON !== 0 ? regularpersecond * led2timeON : 0;
+            let b = led2timeON !== 0 ? saverpersecond * led2timeON : 0;
+            
+            led2regularusage = a.toFixed(4)
+            saverusage = b.toFixed(4);
             storeData()
         }
     });
@@ -224,6 +232,17 @@ function toggleCheck1Timer() {
         timestamp: Date.now(),
       });
       console.log("Data stored in Firestore with ID: ", docRef.id);
+      // Reload the chart after data is stored
+    chart.updateSeries([
+      {
+        name: 'Power usage',
+        data: regular
+      },
+      {
+        name: 'Power saver',
+        data: saver
+      }
+    ]);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -260,7 +279,7 @@ var options = {
   xaxis: {
     type: 'datetime',
     categories: timestamp, // Assuming labels contain timestamps in milliseconds
-    tickAmount: 10,
+    tickAmount: 8,
     labels: {
       formatter: function(value, timestamp, opts) {
         const date = new Date(timestamp);
