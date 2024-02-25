@@ -7,6 +7,7 @@ import time
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
+hotword = 'jarvis'
 
 def speak(audio):
     engine.say(audio)
@@ -47,7 +48,7 @@ def takeCommand():
 def main():
     while True:
         query = takeCommand().lower()
-        if 'jarvis' in query:
+        if hotword in query:
             speak('How may I help you?')
             query = takeCommand().lower()
 
@@ -72,7 +73,7 @@ def main():
             elif 'turn off power saver for hall room' in query:
                 op = requests.get('http://192.168.54.84:3000/power-saver2')
                 speak(op.text)
-            elif 'turn off the power saver for bedroom' in query:
+            elif 'turn off power saver for bedroom' in query:
                 op = requests.get('http://192.168.54.84:3000/power-saver2')
                 speak(op.text)
             else:
