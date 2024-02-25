@@ -13,6 +13,7 @@
     --light-warning: #FFF2C6;
     --success: #9819d2;
     --light-success: #BBF7D0;
+    --text: #181a1e;
 }
 
 *{
@@ -40,7 +41,8 @@ html{
 body.dark{
     --light: #181a1e;
     --grey: #25252c;
-    --dark: #fbfbfb
+    --dark: #fbfbfb;
+    --text: #fbfbfb;
 }
 
 body{
@@ -289,3 +291,12 @@ body{
 }
 
 
+div.apexcharts-tooltip.apexcharts-theme-light.apexcharts-active {
+    background-color: var(--light); 
+    color: var(--text);
+    border-color: var(--light);
+}
+
+div.apexcharts-tooltip.apexcharts-theme-light.apexcharts-active .apexcharts-tooltip-title{
+    background-color: var(--light); 
+}

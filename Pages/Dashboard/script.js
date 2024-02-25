@@ -47,6 +47,8 @@ var regular = await getSpecificField(collectionName, "regularusage");
 var saver = await getSpecificField(collectionName, "saverusage");
 var timestamp = await getSpecificFieldSorted(collectionName, "timestamp");
 
+console.log("timestamp : "+timestamp.length);
+console.log("regular : "+regular.length);
   // Calculate the sum of the array values
   const totalduration1 = led1duration.reduce((acc, val) => acc + val, 0);
   const totalduration2 = led2duration.reduce((acc, val) => acc + val, 0);
@@ -232,17 +234,7 @@ function toggleCheck1Timer() {
         timestamp: Date.now(),
       });
       console.log("Data stored in Firestore with ID: ", docRef.id);
-      // Reload the chart after data is stored
-    chart.updateSeries([
-      {
-        name: 'Power usage',
-        data: regular
-      },
-      {
-        name: 'Power saver',
-        data: saver
-      }
-    ]);
+      
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -252,39 +244,38 @@ var options = {
     series: [
         {
             name: 'Power usage',
-            data: regular
+            data: regular,
         },
         {
             name: 'Power saver',
-            data: saver
+            data: saver,
         }
 
     ],
     chart: {
     height: 550,
-    type: 'line',
+    type: 'bar',
     animations: {
         initialAnimation: {
-          enabled: true
+          enabled: false
         }
     }
   },
   forecastDataPoints: {
-    count: 7
+    count: 10
   },
   stroke: {
-    width: 5,
-    curve: 'smooth'
+    width: 10,
   },
   xaxis: {
     type: 'datetime',
     categories: timestamp, // Assuming labels contain timestamps in milliseconds
-    tickAmount: 8,
+    tickAmount: 5,
     labels: {
       formatter: function(value, timestamp, opts) {
         const date = new Date(timestamp);
         // Use the toLocaleTimeString() method to format the time part
-        return opts.dateFormatter(date, 'HH:mm:ss');
+        return opts.dateFormatter(date, 'HH:mm');
       }
     }
   },
@@ -295,18 +286,6 @@ var options = {
       fontSize: "16px",
       color: '#666'
     }
-  },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      shade: 'dark',
-      gradientToColors: [ '#9819d2'],
-      shadeIntensity: 1,
-      type: 'horizontal',
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 100, 100, 100]
-    },
   },
   yaxis: {
     min: 0,
