@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-const char *ssid = "Oneplus";
-const char *password = "Yashraj25";
+const char *ssid = "Celeste_2.4";
+const char *password = "7907003596";
 
 ESP8266WebServer server(3000);
 
@@ -19,9 +19,10 @@ void setup() {
   Serial.begin(9600);
 
   WiFi.begin(ssid, password);
+  Serial.println("Connecting to WiFi...");
   while (WiFi.status() != WL_CONNECTED) {
       delay(1000);
-      Serial.println("Connecting to WiFi...");
+      Serial.print(".");
   }
   Serial.println("Connected to WiFi");
   Serial.println("IP: ");
@@ -45,11 +46,6 @@ void setup() {
       else{
         server.send(200, "text/plain", "Bedroom lights are turned off");
       }
-  });
-
-  server.on("/blink-led1", HTTP_GET, []() {
-      digitalWrite(ledPin1, !digitalRead(ledPin1));
-      server.send(200, "text/plain", "LED Toggled");
   });
 
   server.on("/power-saver1", HTTP_GET, [](){

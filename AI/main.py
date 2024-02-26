@@ -53,28 +53,28 @@ def main():
             query = takeCommand().lower()
 
             if 'turn on the hall room light' in query:
-                op = requests.get('http://192.168.54.84:3000/toggle-led1')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1')
                 speak(op.text)
             elif 'turn off the hall room light' in query:
-                op = requests.get('http://192.168.54.84:3000/toggle-led1')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1')
                 speak(op.text)
             elif 'turn on the bedroom light' in query:
-                op = requests.get('http://192.168.54.84:3000/toggle-led2')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led2')
                 speak(op.text)
             elif 'turn off the bedroom light' in query:
-                op = requests.get('http://192.168.54.84:3000/toggle-led2')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led2')
                 speak(op.text)
             elif 'turn on power saver for hall room' in query:
-                op = requests.get('http://192.168.54.84:3000/power-saver1')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/power-saver1')
                 speak(op.text)
             elif 'turn on power saver for bedroom' in query:
-                op = requests.get('http://192.168.54.84:3000/power-saver1')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/power-saver1')
                 speak(op.text)
             elif 'turn off power saver for hall room' in query:
-                op = requests.get('http://192.168.54.84:3000/power-saver2')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/power-saver2')
                 speak(op.text)
             elif 'turn off power saver for bedroom' in query:
-                op = requests.get('http://192.168.54.84:3000/power-saver2')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/power-saver2')
                 speak(op.text)
             else:
                 speak('Could you say that again please?')
