@@ -240,57 +240,33 @@ function toggleCheck1Timer() {
     }
   }
 
-var options = {
-    series: [
-        {
-            name: 'Power usage',
-            data: regular,
-        },
-        {
-            name: 'Power saver',
-            data: saver,
-        }
-
-    ],
+  var options = {
+    series: [{
+    name: 'Regular Usage',
+    data: regular
+  }, {
+    name: 'Power Saved',
+    data: saver
+  }],
     chart: {
     height: 550,
-    type: 'bar',
-    animations: {
-        initialAnimation: {
-          enabled: false
-        }
-    }
+    type: 'area'
   },
-  forecastDataPoints: {
-    count: 10
+  dataLabels: {
+    enabled: false
   },
   stroke: {
-    width: 10,
+    curve: 'smooth'
   },
   xaxis: {
     type: 'datetime',
-    categories: timestamp, // Assuming labels contain timestamps in milliseconds
-    tickAmount: 5,
-    labels: {
-      formatter: function(value, timestamp, opts) {
-        const date = new Date(timestamp);
-        // Use the toLocaleTimeString() method to format the time part
-        return opts.dateFormatter(date, 'HH:mm');
-      }
-    }
+    categories: ["2024-03-07T00:00:00.000Z", "2024-03-07T01:30:00.000Z", "2024-03-07T02:30:00.000Z", "2024-03-07T03:30:00.000Z", "2024-03-07T04:30:00.000Z", "2024-03-07T05:30:00.000Z", "2024-03-07T06:30:00.000Z"]
   },
-  title: {
-    text: 'Power Usage',
-    align: 'left',
-    style: {
-      fontSize: "16px",
-      color: '#666'
-    }
+  tooltip: {
+    x: {
+      format: 'dd/MM/yy HH:mm'
+    },
   },
-  yaxis: {
-    min: 0,
-    max: 2
-  }
   };
 
   var chart = new ApexCharts(document.querySelector("#chart"), options);

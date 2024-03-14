@@ -86,7 +86,7 @@ async function init() {
 //powersaver1
 async function power_saver1() {
     // Send a request to the ESP8266 when the button is clicked
-    fetch('https://bulldog-promoted-accurately.ngrok-free.app/power-saver1', {
+    fetch('https://bulldog-promoted-accurately.ngrok-free.app/t2', {
         method: "get",
         headers: new Headers({
             'Access-Control-Allow-Origin': '*',
@@ -110,7 +110,7 @@ async function power_saver1() {
 //powersaver2
 async function power_saver2() {
     // Send a request to the ESP8266 when the button is clicked
-    fetch('https://bulldog-promoted-accurately.ngrok-free.app/power-saver2', {
+    fetch('https://bulldog-promoted-accurately.ngrok-free.app/t4', {
         method: "get",
         headers: new Headers({
             'Access-Control-Allow-Origin': '*',
@@ -134,7 +134,7 @@ async function power_saver2() {
 //red
 async function toggleRED() {
     // Send a request to the ESP8266 when the button is clicked
-    fetch('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1', {
+    fetch('https://bulldog-promoted-accurately.ngrok-free.app/t1', {
         method: "get",
         headers: new Headers({
             'Access-Control-Allow-Origin': '*',
@@ -158,7 +158,103 @@ async function toggleRED() {
 //blue
 async function toggleBLUE() {
     // Send a request to the ESP8266 when the button is clicked
-    fetch('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led2', {
+    fetch('https://bulldog-promoted-accurately.ngrok-free.app/t3', {
+        method: "get",
+        headers: new Headers({
+            'Access-Control-Allow-Origin': '*',
+            'ngrok-skip-browser-warning': '69420',
+        }),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('HTTP error! Status: ${response.status}');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log(data); // Log the response from the ESP8266
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+//red
+async function togglenew1() {
+    // Send a request to the ESP8266 when the button is clicked
+    fetch('https://bulldog-promoted-accurately.ngrok-free.app/t5', {
+        method: "get",
+        headers: new Headers({
+            'Access-Control-Allow-Origin': '*',
+            'ngrok-skip-browser-warning': '69420',
+        }),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('HTTP error! Status: ${response.status}');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log(data); // Log the response from the ESP8266
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+//blue
+async function togglenew2() {
+    // Send a request to the ESP8266 when the button is clicked
+    fetch('https://bulldog-promoted-accurately.ngrok-free.app/t6', {
+        method: "get",
+        headers: new Headers({
+            'Access-Control-Allow-Origin': '*',
+            'ngrok-skip-browser-warning': '69420',
+        }),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('HTTP error! Status: ${response.status}');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log(data); // Log the response from the ESP8266
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+//red
+async function toggleallON() {
+    // Send a request to the ESP8266 when the button is clicked
+    fetch('https://bulldog-promoted-accurately.ngrok-free.app/adminon', {
+        method: "get",
+        headers: new Headers({
+            'Access-Control-Allow-Origin': '*',
+            'ngrok-skip-browser-warning': '69420',
+        }),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('HTTP error! Status: ${response.status}');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log(data); // Log the response from the ESP8266
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+//blue
+async function toggleallOFF() {
+    // Send a request to the ESP8266 when the button is clicked
+    fetch('https://bulldog-promoted-accurately.ngrok-free.app/adminoff', {
         method: "get",
         headers: new Headers({
             'Access-Control-Allow-Origin': '*',
@@ -190,6 +286,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const ledbutton2 = document.getElementById('check2');
     const powersaver1 = document.getElementById('check1');
     const powersaver2 = document.getElementById('check3');
+    const ledbutton3 = document.getElementById('check4');
+    const ledbutton4 = document.getElementById('check5');
+
     const AI = document.getElementById('AI');
 
     // js for AI mode
@@ -222,50 +321,61 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // js for blue led
-    ledbutton2.addEventListener('change', function () {
+    powersaver1.addEventListener('change', function () {
         if (ledbutton2.checked) {
-            toggleBLUE();
+            power_saver1();
         }
         else if (!ledbutton2.checked) {
+            power_saver1();
+        }
+    });
+
+        // js for red led
+    ledbutton2.addEventListener('change', function () {
+        if (ledbutton3.checked) {
             toggleBLUE();
+        }
+        else if (!ledbutton3.checked) {
+            toggleBLUE();
+        }
+    });
+
+    // js for blue led
+    powersaver2.addEventListener('change', function () {
+        if (ledbutton4.checked) {
+            power_saver2();
+        }
+        else if (!ledbutton4.checked) {
+            power_saver2();
         }
     });
 
     // js for powersaver1
-    powersaver1.addEventListener('change', function () {
+    ledbutton3.addEventListener('change', function () {
         if (powersaver1.checked) {
-            power_saver1();
+            togglenew1();
         }
         else if (!powersaver1.checked) {
-            power_saver1();
+            togglenew1();
         }
     });
 
     // js for powersaver2
-    powersaver2.addEventListener('change', function () {
+    ledbutton4.addEventListener('change', function () {
         if (powersaver2.checked) {
-            power_saver2();
+            togglenew2();
         }
         else if (!powersaver2.checked) {
-            power_saver2();
+            togglenew2();
         }
     });
 
-    //js for speech recognition and speech output
-     let isRecognitionActive = false;
-
      test.addEventListener('click', () => {
-         if (!isRecognitionActive) {
-             recognition.start();
-             test.textContent = 'Listening...';
-             isRecognitionActive = true;
-         }
+         toggleallON();
      });
      
      test1.addEventListener('click', () => {
-         recognition.stop();
-         test.textContent = 'Voice Control';
-         isRecognitionActive = false;
+         toggleallOFF();
      });
      
      recognition.onresult = (event) => {

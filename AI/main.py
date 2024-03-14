@@ -9,6 +9,8 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 hotword = 'jarvis'
 
+endpoints = ['l1', 'l2', 'l3', 'l4', 'l5', 'l6']
+
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
@@ -48,33 +50,41 @@ def takeCommand():
 def main():
     while True:
         query = takeCommand().lower()
+
         if hotword in query:
             speak('How may I help you?')
             query = takeCommand().lower()
 
+            i = 0
+            for i in endpoints:
+                if ( endpoints[i] in query):
+                    link = 'https://bulldog-promoted-accurately.ngrok-free.app/'+endpoints[i]
+                    op = requests.get(link)
+                    speak(op.text)
+
             if 'turn on the hall room light' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/t1')
                 speak(op.text)
             elif 'turn off the hall room light' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led1')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/t1')
                 speak(op.text)
             elif 'turn on the bedroom light' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led2')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/t2')
                 speak(op.text)
             elif 'turn off the bedroom light' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/toggle-led2')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/t2')
                 speak(op.text)
             elif 'turn on power saver for hall room' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/power-saver1')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/t3')
                 speak(op.text)
             elif 'turn on power saver for bedroom' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/power-saver1')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/t3')
                 speak(op.text)
             elif 'turn off power saver for hall room' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/power-saver2')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/t4')
                 speak(op.text)
             elif 'turn off power saver for bedroom' in query:
-                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/power-saver2')
+                op = requests.get('https://bulldog-promoted-accurately.ngrok-free.app/t4')
                 speak(op.text)
             else:
                 speak('Could you say that again please?')
