@@ -1,7 +1,7 @@
 # This program adds two numbers
 
-num2 = 10
-num3 = 10
+num4 = 10
+num5 = 10
 
 # Add two numbers
 sum = num1 + num2
